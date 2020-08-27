@@ -376,6 +376,22 @@ namespace Unreal_Binary_Builder
             CustomOptions.IsEnabled = false;
         }
 
+        private void BuildZip_Click(object sender, RoutedEventArgs e)
+        {
+         
+            if (postBuildSettings.CanSaveToZip())
+            {
+                string FinalBuildPath = Path.GetFullPath(AutomationExePath).Replace(@"\Engine\Binaries\DotNET", @"\LocalBuilds\Engine").Replace(Path.GetFileName(AutomationExePath), "");
+                postBuildSettings.SaveToZip(this, FinalBuildPath, postBuildSettings.ZipPath.Text);
+                AddLogEntry("Saving zip file to " + postBuildSettings.ZipPath.Text);
+                WriteToLogFile();
+                return;
+            }
+            
+            WriteToLogFile();
+
+        }
+
         private void BuildRocketUE_Click(object sender, RoutedEventArgs e)
         {
             bLastBuildSuccess = false;
@@ -609,5 +625,6 @@ namespace Unreal_Binary_Builder
         {
 			return EngineVersionSelection.SelectedIndex >= 3;
 		}
-	}
+
+    }
 }

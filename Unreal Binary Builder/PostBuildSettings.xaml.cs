@@ -113,7 +113,11 @@ namespace Unreal_Binary_Builder
 							Dispatcher.Invoke(() =>
 							{
 								string CurrentFilePath = Path.GetFullPath(file).ToLower();
-								if (bIncludePDB.IsChecked == false && Path.GetExtension(file).ToLower() == ".pdb")
+                                if (CurrentFilePath.Contains(@"\source\thirdparty\androidPermission\permission_library"))
+                                {
+
+                                }
+                                if (bIncludePDB.IsChecked == false && Path.GetExtension(file).ToLower() == ".pdb")
 								{
 									bSkipFile = true;							
 								}
@@ -163,7 +167,7 @@ namespace Unreal_Binary_Builder
 									bSkipFile = true;
 								}
 
-								if (bIncludeSamples.IsChecked == false && CurrentFilePath.Contains(@"\samples\"))
+								if (bIncludeSamples.IsChecked == false && CurrentFilePath.Contains(@"\source\thirdparty\") == false && CurrentFilePath.Contains(@"\samples\"))
 								{
 									bSkipFile = true;
 								}
