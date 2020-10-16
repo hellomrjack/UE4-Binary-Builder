@@ -492,7 +492,7 @@ namespace Unreal_Binary_Builder
                 {
                     if (SupportHTML5())
 					{
-						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithHTML5={7} -set:WithSwitch={8} -set:WithPS4={9} -set:WithXboxOne={10} -set:WithLumin={11}",
+						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithHTML5={7} -set:WithLumin={8}",
 						GetConditionalString(bWithWin64.IsChecked),
 						GetConditionalString(bWithWin32.IsChecked),
 						GetConditionalString(bWithMac.IsChecked),
@@ -501,14 +501,11 @@ namespace Unreal_Binary_Builder
 						GetConditionalString(bWithTVOS.IsChecked),
 						GetConditionalString(bWithLinux.IsChecked),
 						GetConditionalString(bWithHTML5.IsChecked),
-						GetConditionalString(bWithSwitch.IsChecked),
-						GetConditionalString(bWithPS4.IsChecked),
-						GetConditionalString(bWithXboxOne.IsChecked),
 						GetConditionalString(bWithLumin.IsChecked));
 					}
 					else
 					{
-						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithSwitch={7} -set:WithPS4={8} -set:WithXboxOne={9} -set:WithLumin={10}",
+						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithLumin={7}",
 						GetConditionalString(bWithWin64.IsChecked),
 						GetConditionalString(bWithWin32.IsChecked),
 						GetConditionalString(bWithMac.IsChecked),
@@ -516,11 +513,16 @@ namespace Unreal_Binary_Builder
 						GetConditionalString(bWithIOS.IsChecked),
 						GetConditionalString(bWithTVOS.IsChecked),
 						GetConditionalString(bWithLinux.IsChecked),
-						GetConditionalString(bWithSwitch.IsChecked),
-						GetConditionalString(bWithPS4.IsChecked),
-						GetConditionalString(bWithXboxOne.IsChecked),
 						GetConditionalString(bWithLumin.IsChecked));
 					}
+
+                    if(SupportConsoles())
+                    {
+                        CommandLineArgs += string.Format(" -set:WithSwitch={0} -set:WithPS4={1} -set:WithXboxOne={2}",
+                        GetConditionalString(bWithSwitch.IsChecked),
+                        GetConditionalString(bWithPS4.IsChecked),
+                        GetConditionalString(bWithXboxOne.IsChecked));
+                    }
 
 					if (SupportLinuxAArch64()) 
                     {
@@ -624,6 +626,10 @@ namespace Unreal_Binary_Builder
 		private bool SupportLinuxAArch64()
         {
 			return EngineVersionSelection.SelectedIndex >= 3;
+		}
+		private bool SupportConsoles()
+        {
+			return EngineVersionSelection.SelectedIndex < 4;
 		}
 
     }

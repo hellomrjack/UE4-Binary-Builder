@@ -151,7 +151,8 @@
 				<ComboBoxItem x:Name="comboBoxItem1" Content="4.22"/>
 				<ComboBoxItem x:Name="comboBoxItem2" Content="4.23"/>
 				<ComboBoxItem x:Name="comboBoxItem3" Content="4.24"/>
-			</ComboBox>
+                <ComboBoxItem x:Name="comboBoxItem4" Content="4.25"/>
+            </ComboBox>
 
 			<local:LogViewer x:Name="LogControl" Margin="10,377,7.6,47.4" Height="Auto" Width="Auto"/>
 

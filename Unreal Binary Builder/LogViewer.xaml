@@ -34,10 +34,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="{Binding DateTime}" Grid.Column="0"
+                <local:SelectableTextBlock Text="{Binding DateTime}" Grid.Column="0"
                        FontWeight="Bold" Margin="5,0,5,0"/>
 
-                <TextBlock Text="{Binding Message}" Grid.Column="2" Foreground="{Binding MessageColor}"
+                <local:SelectableTextBlock Text="{Binding Message}" Grid.Column="2" Foreground="{Binding MessageColor}"
                        TextWrapping="Wrap"/>
             </Grid>
         </DataTemplate>
